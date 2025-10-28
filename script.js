@@ -1,21 +1,24 @@
-const allPrices = document.querySelectorAll('.price')
-     //function to get sum and append it 
-     function getSumAndAppend(){
-       
-        // step 1:get total sum
-        let totalSum = 0;
-        for(let price of allPrices){
-         totalSum += parseInt(price.innerText)
-        }
-        //console.log(totalSum)
+// Step 1: Select all price elements
+const prices = document.querySelectorAll('.price');
 
-        const newRow = document.createElement('tr')
-        const newData = document.createElement('td')
-        newData.colSpan = 2;
-        newData.innerText = `total amount : ${totalSum}`// for adding dynamic text with the string
+// Step 2: Initialize total variable
+let total = 0;
 
+// Step 3: Loop through prices and calculate total
+prices.forEach(price => {
+  total += parseFloat(price.textContent); // convert text to number
+});
 
-        newRow.appendChild(newData)
-        table.appendChild(newRow)
-     }
-     getSumAndAppend()
+// Step 4: Create a new table row and cell for total
+const newRow = document.createElement('tr');
+const totalCell = document.createElement('td');
+
+// Step 5: Set the cell to span 2 columns and display total
+totalCell.colSpan = 2;
+totalCell.textContent = `Total Price: Rs ${total}`;
+totalCell.style.fontWeight = 'bold';
+totalCell.style.textAlign = 'center';
+
+// Step 6: Append the total cell and row to the table
+newRow.appendChild(totalCell);
+document.querySelector('table').appendChild(newRow);
